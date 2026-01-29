@@ -1,39 +1,30 @@
 package com.logos.domain.dto;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * 统一API响应包装类
+ * 统一响应包装类
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "统一响应")
 public class ApiResponse<T> {
-    
-    /**
-     * 响应码（0=成功）
-     */
+
+    @Schema(description = "响应码", example = "0")
     private Integer code;
-    
-    /**
-     * 响应消息
-     */
+
+    @Schema(description = "响应消息", example = "success")
     private String message;
-    
-    /**
-     * 响应数据
-     */
+
+    @Schema(description = "响应数据")
     private T data;
-    
-    /**
-     * 追踪ID
-     */
-    private String traceId;
-    
+
     public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
                 .code(0)
@@ -41,33 +32,11 @@ public class ApiResponse<T> {
                 .data(data)
                 .build();
     }
-    
-    public static <T> ApiResponse<T> success(String message, T data) {
-        return ApiResponse.<T>builder()
-                .code(0)
-                .message(message)
-                .data(data)
-                .build();
-    }
-    
-    public static <T> ApiResponse<T> error(int code, String message) {
+
+    public static <T> ApiResponse<T> error(Integer code, String message) {
         return ApiResponse.<T>builder()
                 .code(code)
                 .message(message)
-                .build();
-    }
-    
-    public static <T> ApiResponse<T> error(ErrorCode errorCode) {
-        return ApiResponse.<T>builder()
-                .code(errorCode.getCode())
-                .message(errorCode.getMessage())
-                .build();
-    }
-    
-    public static <T> ApiResponse<T> error(ErrorCode errorCode, String details) {
-        return ApiResponse.<T>builder()
-                .code(errorCode.getCode())
-                .message(errorCode.getMessage() + ": " + details)
                 .build();
     }
 }

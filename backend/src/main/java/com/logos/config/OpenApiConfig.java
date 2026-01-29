@@ -11,16 +11,16 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 /**
- * OpenAPI配置
+ * OpenAPI 文档配置
  */
 @Configuration
 public class OpenApiConfig {
-    
+
     @Bean
     public OpenAPI logosOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("LOGOS Rule Engine API")
+                        .title("LOGOS 智能规则引擎 API")
                         .description("基于本体建模与大模型的语义规则编译器接口")
                         .version("1.0.0")
                         .contact(new Contact()
@@ -30,8 +30,7 @@ public class OpenApiConfig {
                                 .name("Apache 2.0")
                                 .url("https://www.apache.org/licenses/LICENSE-2.0")))
                 .servers(List.of(
-                        new Server().url("http://localhost:8080").description("开发环境"),
-                        new Server().url("http://api.logos-system.com").description("生产环境")
+                        new Server().url("/api/logos/v1").description("本地开发环境")
                 ));
     }
 }

@@ -1,30 +1,22 @@
 package com.logos.domain.dto;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 import java.util.Map;
 
 /**
- * 规则验证请求DTO
+ * 规则验证请求 DTO
  */
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Schema(description = "规则验证请求")
 public class RuleValidateRequest {
-    
-    /**
-     * SpEL表达式
-     */
+
+    @Schema(description = "SpEL 表达式", example = "#businessTypeCode == '3' ? #soId == '2831' : true")
     @NotBlank(message = "SpEL表达式不能为空")
     private String spel;
-    
-    /**
-     * Mock数据
-     */
+
+    @Schema(description = "Mock 数据")
     private Map<String, Object> mockData;
 }

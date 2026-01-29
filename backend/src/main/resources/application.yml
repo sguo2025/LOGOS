@@ -1,59 +1,47 @@
 server:
   port: 8080
+  servlet:
+    context-path: /api/logos/v1
 
 spring:
   application:
     name: logos-backend
   
-  # Neo4j Configuration
+  # Neo4j 配置
   neo4j:
-    uri: bolt://neo4j:7687
+    uri: bolt://localhost:7687
     authentication:
       username: neo4j
       password: logos2024
-  
-  # Spring AI / OpenAI Configuration
-  ai:
-    openai:
-      api-key: ${OPENAI_API_KEY:sk-demo}
-      base-url: ${OPENAI_BASE_URL:https://api.openai.com}
-      chat:
-        options:
-          model: ${OPENAI_MODEL:gpt-4o}
-          temperature: 0.3
 
-# LOGOS Custom Configuration
-logos:
-  llm:
-    provider: ${LLM_PROVIDER:openai}
-    timeout: 30000
-  spel:
-    sandbox:
-      timeout: 5000
-      max-iterations: 1000
-  ontology:
-    cache-ttl: 300
-
-# OpenAPI Documentation
+# SpringDoc OpenAPI 配置
 springdoc:
   api-docs:
     path: /api-docs
+    enabled: true
   swagger-ui:
     path: /swagger-ui.html
+    enabled: true
     tags-sorter: alpha
     operations-sorter: alpha
 
-# Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
-  endpoint:
-    health:
-      show-details: when_authorized
-
+# 日志配置
 logging:
   level:
+    root: INFO
     com.logos: DEBUG
-    org.springframework.data.neo4j: INFO
+    org.neo4j: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# 应用自定义配置
+logos:
+  spel:
+    cache-enabled: true
+    cache-size: 1000
+  llm:
+    api-key: ${OPENAI_API_KEY:sk-demo}
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com}
+    model: ${OPENAI_MODEL:gpt-4o}
+    timeout-seconds: 60
+    max-retries: 3

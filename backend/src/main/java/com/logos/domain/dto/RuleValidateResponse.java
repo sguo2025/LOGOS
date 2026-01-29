@@ -1,43 +1,29 @@
 package com.logos.domain.dto;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 /**
- * 规则验证响应DTO
+ * 规则验证响应 DTO
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "规则验证响应")
 public class RuleValidateResponse {
-    
-    /**
-     * 验证是否成功
-     */
+
+    @Schema(description = "验证是否成功")
     private Boolean success;
-    
-    /**
-     * 执行结果
-     */
-    private Object result;
-    
-    /**
-     * 执行日志
-     */
+
+    @Schema(description = "实际执行结果")
+    private Object actualValue;
+
+    @Schema(description = "执行日志")
     private List<String> logs;
-    
-    /**
-     * 错误信息（如果失败）
-     */
-    private String errorMessage;
-    
-    /**
-     * 执行耗时（毫秒）
-     */
-    private Long executionTime;
 }

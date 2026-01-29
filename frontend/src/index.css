@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-layout-content {
+  padding: 24px;
+  min-height: calc(100vh - 64px - 70px);
+  background: #f0f2f5;
+}
+
+.card-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* NL2SpEL 工作台样式 */
+.workbench-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  height: calc(100vh - 200px);
+}
+
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* SpEL 代码预览 */
+.spel-preview {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 16px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* 证据图谱 */
+.evidence-node {
+  padding: 8px 12px;
+  background: #e6f7ff;
+  border: 1px solid #91d5ff;
+  border-radius: 4px;
+  margin: 4px;
+  display: inline-block;
+}
+
+.evidence-node.metadata {
+  background: #f6ffed;
+  border-color: #b7eb8f;
+}
+
+.evidence-node.constraint {
+  background: #fff7e6;
+  border-color: #ffd591;
+}
+
+/* 沙箱抽屉 */
+.sandbox-result {
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.sandbox-result.success {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+}
+
+.sandbox-result.error {
+  background: #fff2f0;
+  border: 1px solid #ffccc7;
+}
+
+/* 置信度指示器 */
+.confidence-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confidence-bar {
+  flex: 1;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.confidence-fill.high {
+  background: #52c41a;
+}
+
+.confidence-fill.medium {
+  background: #faad14;
+}
+
+.confidence-fill.low {
+  background: #ff4d4f;
+}

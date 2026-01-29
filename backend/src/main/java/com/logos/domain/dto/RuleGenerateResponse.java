@@ -1,54 +1,32 @@
 package com.logos.domain.dto;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 /**
- * 规则生成响应DTO
+ * 规则生成响应 DTO
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "规则生成响应")
 public class RuleGenerateResponse {
-    
-    /**
-     * 生成的SpEL表达式
-     */
+
+    @Schema(description = "生成的 SpEL 表达式", example = "#businessTypeCode == '3' ? #soId == '2831' : true")
     private String spel;
-    
-    /**
-     * 解释说明
-     */
+
+    @Schema(description = "解释说明", example = "识别到业务类型映射为COL1...")
     private String explanation;
-    
-    /**
-     * 置信度（0-1）
-     */
+
+    @Schema(description = "置信度", example = "0.95")
     private Double confidence;
-    
-    /**
-     * 证据节点（命中的图谱节点）
-     */
+
+    @Schema(description = "证据节点列表")
     private List<String> evidenceNodes;
-    
-    /**
-     * 语义追踪信息
-     */
-    private List<SemanticTraceItem> semanticTrace;
-    
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class SemanticTraceItem {
-        private String nlTerm;        // 自然语言词汇
-        private String mappedField;   // 映射字段
-        private String physicalPath;  // 物理路径
-        private Double confidence;    // 置信度
-    }
 }
