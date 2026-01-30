@@ -26,4 +26,7 @@ public class RuleValidateResponse {
 
     @Schema(description = "执行日志")
     private List<String> logs;
+
+    @Schema(description = "推理溯源路径", example = "执行上下文(RuleContext) -> 变量绑定(businessTypeCode=3) -> 条件匹配(true)")
+    private String trace;
 }

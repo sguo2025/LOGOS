@@ -29,4 +29,7 @@ public class RuleGenerateResponse {
 
     @Schema(description = "证据节点列表")
     private List<String> evidenceNodes;
+
+    @Schema(description = "推理溯源路径", example = "业务需求(融合光网) -> 命中实体(ProdInst:80000122) -> 匹配属性(COL1) -> 常量值(3)")
+    private String trace;
 }
