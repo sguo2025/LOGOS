@@ -42,7 +42,7 @@ export const ruleApi = {
    * @param {Object} params.context - 上下文信息
    */
   generate: (params) => {
-    return request('/rules/generate', {
+    return request('/rule/generate', {
       method: 'POST',
       body: JSON.stringify(params),
     });
@@ -55,7 +55,7 @@ export const ruleApi = {
    * @param {Object} params.testData - 测试数据
    */
   validate: (params) => {
-    return request('/rules/validate', {
+    return request('/rule/validate', {
       method: 'POST',
       body: JSON.stringify(params),
     });
@@ -68,7 +68,7 @@ export const ruleApi = {
    * @param {Object} params.context - 执行上下文
    */
   execute: (params) => {
-    return request('/rules/execute', {
+    return request('/rule/execute', {
       method: 'POST',
       body: JSON.stringify(params),
     });

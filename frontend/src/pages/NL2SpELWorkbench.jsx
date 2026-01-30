@@ -130,20 +130,13 @@ function NL2SpELWorkbench() {
       <Row gutter={16} style={{ marginBottom: 16 }}>
         {/* 左侧：自然语言输入 */}
         <Col span={8}>
-          <Card title="📝 自然语言输入" className="panel" style={{ height: 400 }}>
+          <Card title="📝 自然语言输入" className="panel" style={{ minHeight: 320 }}>
             <TextArea
-              rows={8}
+              rows={6}
               placeholder="请输入业务规则描述，例如：当业务类型是融合光网时，只准做拆机操作"
               value={naturalLanguage}
               onChange={(e) => setNaturalLanguage(e.target.value)}
-              style={{ marginBottom: 16 }}
-            />
-            <Alert
-              message="提示"
-              description="系统会自动识别您描述中的实体、属性和约束条件"
-              type="info"
-              showIcon
-              style={{ marginBottom: 16 }}
+              style={{ marginBottom: 12 }}
             />
             <Button
               type="primary"
@@ -151,6 +144,7 @@ function NL2SpELWorkbench() {
               loading={loading}
               onClick={handleGenerate}
               block
+              size="large"
             >
               生成 SpEL
             </Button>
@@ -159,7 +153,7 @@ function NL2SpELWorkbench() {
 
         {/* 中间：语义理解与SpEL预览 */}
         <Col span={8}>
-          <Card title="🎯 语义理解" className="panel" style={{ height: 400 }}>
+          <Card title="🎯 语义理解" className="panel" style={{ minHeight: 320 }}>
             {result ? (
               <>
                 <div style={{ marginBottom: 16 }}>
@@ -217,7 +211,7 @@ function NL2SpELWorkbench() {
 
         {/* 右侧：证据图谱 */}
         <Col span={8}>
-          <Card title="🔗 证据图谱" className="panel" style={{ height: 400 }}>
+          <Card title="🔗 证据图谱" className="panel" style={{ minHeight: 320 }}>
             {result?.evidenceNodes?.length > 0 ? (
               <>
                 <Paragraph type="secondary">
