@@ -38,8 +38,8 @@ function JavaModelingWorkbench() {
   const [detailModalOpen, setDetailModalOpen] = useState(false)
   const [pushing, setPushing] = useState(false)
 
-  // 模拟代码内容
-  const [codeContent] = useState(`package com.example.dto;
+  // 代码内容状态 - 支持上传文件更新
+  const [codeContent, setCodeContent] = useState(`package com.example.dto;
 
 @Entity
 @Description("接入产品实例")
@@ -60,11 +60,20 @@ public class AccessProdInst {
     // getters and setters
 }`)
 
-  // 处理文件上传
+  // 处理文件上传 - 读取文件内容并更新预览
   const handleUpload = async (info) => {
-    if (info.file.status === 'done') {
-      message.success('文件上传成功')
-      handleExtract()
+    const { file } = info
+    if (file.status === 'done' && file.originFileObj) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const content = e.target.result
+        setCodeContent(content)
+        message.success(`文件 ${file.name} 上传成功`)
+      }
+      reader.onerror = () => {
+        message.error('文件读取失败')
+      }
+      reader.readAsText(file.originFileObj)
     }
   }
 
