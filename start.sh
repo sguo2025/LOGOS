@@ -25,7 +25,7 @@ JAVA_VER=$(java -version 2>&1 | head -1 | cut -d'"' -f2 | cut -d'.' -f1)
 if [[ "$JAVA_VER" -lt 21 ]]; then
     echo "  安装 Java 21..."
     sdk install java 21.0.9-amzn -y 2>/dev/null || true
-    sdk use java 21.0.9-amzn 2>/dev/null || true
+    echo "y" | sdk use java 21.0.9-amzn 2>/dev/null || true
     source "/usr/local/sdkman/bin/sdkman-init.sh"
 fi
 echo -e "  ${G}✓${NC} Java $(java -version 2>&1 | head -1 | cut -d'"' -f2)"
